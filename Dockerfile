@@ -4,15 +4,18 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git python3 python3-pip ffmpeg sox \
+    git python3 python3-pip ffmpeg sox curl \
+    && curl -LsSf https://astral.sh/uv/install.sh | sh \
     && rm -rf /var/lib/apt/lists/*
+
+ENV PATH="/root/.local/bin:$PATH"
 
 WORKDIR /workspace
 
 RUN git clone --depth 1 https://github.com/ace-step/ACE-Step-1.5.git && \
     cd ACE-Step-1.5 && \
-    pip install --no-cache-dir -e acestep/third_parts/nano-vllm && \
-    pip install --no-cache-dir -e .
+    uv pip install --system acestep/third_parts/nano-vllm && \
+    uv pip install --system -e .
 
 WORKDIR /workspace/ACE-Step-1.5
 
