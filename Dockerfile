@@ -1,10 +1,10 @@
-FROM pytorch/pytorch:2.4.0-cuda12.4-cudnn9-runtime
+FROM nvidia/cuda:12.8.0-cudnn-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git ffmpeg sox \
+    git python3 python3-pip ffmpeg sox \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
