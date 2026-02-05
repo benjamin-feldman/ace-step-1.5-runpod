@@ -14,4 +14,4 @@ WORKDIR /workspace/ACE-Step-1.5
 
 EXPOSE 7860
 
-CMD uv sync && uv run acestep --server-name 0.0.0.0
+CMD uv sync && uv run acestep --server-name 0.0.0.0 --config_path acestep-v15
