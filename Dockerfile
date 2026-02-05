@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /workspace
 
 RUN git clone --depth 1 https://github.com/ace-step/ACE-Step-1.5.git && \
-    cd ACE-Step-1.5 && pip install --no-cache-dir -e .
+    cd ACE-Step-1.5 && \
+    pip install --no-cache-dir -e acestep/third_parts/nano-vllm && \
+    pip install --no-cache-dir -e .
 
 WORKDIR /workspace/ACE-Step-1.5
 
